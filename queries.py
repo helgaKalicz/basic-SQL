@@ -1,28 +1,41 @@
 import psycopg2
 
 
-def connection(question):
+def read_user_datas(filename):
+    with open(filename) as file:
+        return file.read().split(',')
+
+
+def fetch_database(query):
     try:
-        connect_str = "dbname='kalicz' user='kalicz' host='localhost' password='nincsen'"
+        datas = read_user_datas('user.txt')
+        connect_str = "dbname={0} user={0} host='localhost' password={1}".format(data[0], data[1])
         conn = psycopg2.connect(connect_str)
         conn.autocommit = True
         cursor = conn.cursor()
-        cursor.execute(question)
+        cursor.execute(query)
         rows = cursor.fetchall()
         return rows
     except Exception as e:
         print(e)
+    finally:
+        if conn:
+            conn.close()
 
 
-def modify_database(question):
+def modify_database(query):
     try:
-        connect_str = "dbname='kalicz' user='kalicz' host='localhost' password='nincsen'"
+        datas = read_user_datas('user.txt')
+        connect_str = "dbname={0} user={0} host='localhost' password={1}".format(data[0], data[1])
         conn = psycopg2.connect(connect_str)
         conn.autocommit = True
         cursor = conn.cursor()
-        cursor.execute(question)
+        cursor.execute(query)
     except Exception as e:
         print(e)
+    finally:
+        if conn:
+            conn.close()
 
 
 def mentors_name():
@@ -67,24 +80,3 @@ def show_all_mentors():
 
 def show_all_applicants():
     return "SELECT * FROM applicants;"
-
-
-def print_menu():
-    menu_list = ['0 Exit program',
-                 '1 Show mentors',
-                 '2 Show mentors from Miskolc',
-                 '3 Show Carol\'s data',
-                 '4 Show other girls\' datas',
-                 '5 Add new applicant',
-                 '6 Update phone number',
-                 '7 Delete applicant',
-                 '8 Show all mentors\' datas',
-                 '9 Show all apllicants\' datas']
-    for menu_option in menu_list:
-        print(menu_option)
-
-
-def print_result(datas):
-    for data in datas:
-        print('  '.join(map(str, data)))
-    print()
