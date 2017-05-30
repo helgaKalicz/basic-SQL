@@ -24,7 +24,7 @@ def all_school():
 
 @app.route('/mentors-by-country')
 def mentors_by_country():
-    data_list = []
+    data_list = q.fetch_database(q.show_mentors_by_country())
     return render_template('queries.html', data_list=data_list)
 
 

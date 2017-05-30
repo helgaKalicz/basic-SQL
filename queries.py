@@ -51,7 +51,8 @@ def show_all_school():
 
 
 def show_mentors_by_country():
-    pass
+    return """SELECT schools.country, COUNT(mentors.id) FROM schools
+              LEFT JOIN mentors ON schools.city = mentors.city GROUP BY schools.country ORDER BY schools.country ASC;"""
 
 
 def show_contacts():
