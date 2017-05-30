@@ -30,7 +30,7 @@ def mentors_by_country():
 
 @app.route('/contacts')
 def contacts():
-    data_list = []
+    data_list = q.fetch_database(q.show_contacts())
     return render_template('queries.html', data_list=data_list)
 
 

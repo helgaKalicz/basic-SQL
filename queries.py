@@ -18,11 +18,9 @@ def fetch_database(query):
         return rows
     except Exception as e:
         print(e)
-        '''
     finally:
         if conn:
             conn.close()
-            '''
 
 
 def modify_database(query):
@@ -51,12 +49,13 @@ def show_all_school():
 
 
 def show_mentors_by_country():
-    return """SELECT schools.country, COUNT(mentors.id) FROM schools
-              LEFT JOIN mentors ON schools.city = mentors.city GROUP BY schools.country ORDER BY schools.country ASC;"""
+    return """SELECT schools.country, COUNT(mentors.id) FROM mentors
+              RIGHT JOIN schools ON mentors.city = schools.city GROUP BY schools.country ORDER BY schools.country ASC;"""
 
 
 def show_contacts():
-    pass
+    return """SELECT schools.name, mentors.first_name, mentors.last_name FROM mentors
+              INNER JOIN schools ON mentors.id = schools.contact_person ORDER BY schools.name;"""
 
 
 def show_applicants():
