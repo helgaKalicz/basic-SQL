@@ -55,7 +55,7 @@ def show_mentors_by_country():
 
 def show_contacts():
     return """SELECT schools.name, mentors.first_name, mentors.last_name FROM mentors
-              INNER JOIN schools ON mentors.id = schools.contact_person ORDER BY schools.name;"""
+              INNER JOIN schools ON mentors.id = schools.contact_person ORDER BY schools.name ASC;"""
 
 
 def show_applicants():
