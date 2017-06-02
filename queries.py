@@ -59,7 +59,9 @@ def show_contacts():
 
 
 def show_applicants():
-    pass
+    return """SELECT applicants.first_name, applicants.application_code, applicants_mentors.creation_date FROM applicants
+              LEFT JOIN applicants_mentors ON applicants.id=applicants_mentors.applicant_id
+              WHERE applicants_mentors.creation_date >= '2016-01-01' ORDER BY applicants_mentors.creation_date DESC;"""
 
 
 def show_applicants_and_mentors():
