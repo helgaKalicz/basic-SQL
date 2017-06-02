@@ -65,4 +65,6 @@ def show_applicants():
 
 
 def show_applicants_and_mentors():
-    pass
+    return """SELECT applicants.first_name, applicants.application_code, mentors.first_name, mentors.last_name FROM applicants
+              LEFT JOIN (applicants_mentors LEFT JOIN mentors ON applicants_mentors.mentor_id = mentors.id)
+              ON applicants.id=applicants_mentors.applicant_id ORDER BY applicants.id ASC;"""
