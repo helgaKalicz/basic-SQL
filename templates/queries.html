@@ -4,8 +4,11 @@
         <meta charset="UTF-8">
         <title>Codecool</title>
     </head>
-    <body>
-        <table border='2'>
+    <body text="#4d4d00" bgcolor="#d0cc95" link="#4d4d00" vlink="#4d4d00" style="font-size:160%; font-family:monospace;">
+        <table border="2" bgcolor="#f3eba5">
+            {% for title in table_head %}
+            <th align="center">{{ title }}</th>
+            {% endfor %}
             {% for datas in data_list %}
             <tr>
                 {% for data in datas %}
@@ -14,6 +17,6 @@
             </tr>
             {% endfor %}
         </table>
-        <button><a href='/'>Back</a></button>
+        <p><button><a href='/'>Back</a></button></p>
     </body>
 </html>
